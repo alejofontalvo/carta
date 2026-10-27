@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#FFEEF3">
+<title>Carta para Mary</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..700;1,6..96,400..700&family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..600&family=Nanum+Pen+Script&family=Gowun+Batang:wght@400;700&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+<style>
+/* Layout: una sola carta larga y centrada. Las fotos son copias reveladas, pegadas con cinta y apenas torcidas.
+   Un sobre rosa abre la experiencia; pétalos de cerezo caen mientras se lee. */
+:root{
+  --paper:#FFFBFC;
+  --blush:#FFEEF3;
+  --petal:#FFC9DB;
+  --rose:#EE6C9C;
+  --berry:#B8336A;
+  --ink:#3D1B2B;
+  --ink-soft:#80566A;
+  --line:#F6D3E0;
+  --f-display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif;
+  --f-body:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-hand:"Nanum Pen Script","Segoe Print","Bradley Hand",cursive;
+  --f-kr:"Gowun Batang","Apple SD Gothic Neo","Malgun Gothic",serif;
+  --f-sign:"Mrs Saint Delafield","Snell Roundhand","Apple Chancery",cursive;
+  --ease-out:cubic-bezier(0.23,1,0.32,1);
+  --ease-io:cubic-bezier(0.77,0,0.175,1);
+  color-scheme:light;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:clip}
+html.locked{overflow:hidden}
+body{
+  margin:0;
+  background-color:var(--paper);
+  background-image:
+    radial-gradient(46rem 26rem at 92% -4%,var(--blush),transparent 62%),
+    radial-gradient(40rem 26rem at -12% 38%,#FFF1F6,transparent 62%),
+    radial-gradient(44rem 28rem at 105% 78%,var(--blush),transparent 62%);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:19px;
+  line-height:1.7;
+  padding-left:max(16px,env(safe-area-inset-left,0px));
+  padding-right:max(16px,env(safe-area-inset-right,0px));
+  padding-block:0;
+  overflow-x:clip;
+  -webkit-text-size-adjust:100%;
+}
+:lang(ko){font-family:var(--f-kr)}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--berry);outline-offset:3px;border-radius:4px}
+
+/* ---------- Intro: el sobre ---------- */
+.intro{
+  position:fixed;inset:0;z-index:100;display:grid;place-items:center;
+  padding:max(24px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background-color:var(--blush);
+  background-image:radial-gradient(36rem 26rem at 50% 38%,#FFFFFF,transparent 70%),radial-gradient(30rem 20rem at 100% 100%,var(--petal),transparent 70%);
+  transition:opacity .8s var(--ease-out),visibility 0s linear .8s;
+}
+.intro.done{opacity:0;visibility:hidden;pointer-events:none}
+.stage{--w:min(84vw,360px);display:grid;justify-items:center;gap:2.6rem;text-align:center}
+.to{margin:0;font-family:var(--f-display);font-style:italic;font-size:clamp(2rem,9vw,2.8rem);line-height:1;color:var(--berry)}
+.to small{display:block;font-family:var(--f-hand);font-style:normal;font-size:1.5rem;color:var(--ink-soft);margin-top:.5rem}
+.env-wrap{animation:bob 4s var(--ease-io) infinite}
+.env-wrap.stop{animation:none}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+.env{
+  position:relative;display:block;width:var(--w);aspect-ratio:3/2;padding:0;border:0;background:none;cursor:pointer;
+  -webkit-tap-highlight-color:transparent;font-size:calc(var(--w)*.052);
+}
+.env>span{position:absolute;display:block}
+.env-back{inset:0;z-index:0;border-radius:8px;background:linear-gradient(165deg,#F9B2CB,#F08AB0);box-shadow:0 28px 40px -20px rgba(184,51,106,.5)}
+.env-flap{left:0;right:0;top:0;height:55%;z-index:4;transform-origin:50% 0;transform:perspective(900px) rotateX(0deg);
+  background:linear-gradient(180deg,#FFC6D9,#F9A0BF);clip-path:polygon(0 0,100% 0,50% 100%);
+  transition:transform .7s var(--ease-io)}
+.env.flap-back .env-flap{z-index:1}
+.env.open .env-flap{transform:perspective(900px) rotateX(180deg)}
+.env-card{left:7%;right:7%;top:9%;bottom:9%;z-index:2;background:var(--paper);border-radius:3px;padding:.9em 1em;text-align:left;
+  box-shadow:0 1px 0 var(--line);transition:transform .8s var(--ease-out) .5s}
+.env.open .env-card{transform:translateY(-64%)}
+.card-hi{display:block;font-family:var(--f-display);font-style:italic;font-size:1.5em;color:var(--berry);line-height:1.1}
+.card-lines{display:grid;gap:.5em;margin-top:.8em}
+.card-lines i{display:block;height:.34em;border-radius:99px;background:var(--line)}
+.card-lines i:nth-child(2){width:84%}.card-lines i:nth-child(3){width:58%}
+.env-front{inset:0;z-index:3;border-radius:8px;background:linear-gradient(180deg,#FBA7C4,#F284AB);clip-path:polygon(0 0,50% 55%,100% 0,100% 100%,0 100%)}
+.seal{left:50%;top:55%;z-index:5;width:3.5em;height:3.5em;margin:-1.75em 0 0 -1.75em;border-radius:50%;display:grid!important;place-items:center;
+  background:radial-gradient(circle at 34% 28%,#F68CB2,#BE3A71 72%);color:#FFE9F1;font-family:var(--f-display);font-style:italic;font-size:1.7em;
+  box-shadow:0 6px 10px -3px rgba(120,20,60,.55),inset 0 0 0 .12em rgba(255,255,255,.18);
+  transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+.env.open .seal{opacity:0;transform:scale(.9)}
+.hint{margin:0;font-family:var(--f-hand);font-size:1.6rem;color:var(--ink-soft);animation:pulse 2.4s ease-in-out infinite;transition:opacity .3s var(--ease-out)}
+.hint.gone{opacity:0;animation:none}
+@keyframes pulse{0%,100%{opacity:.55}50%{opacity:1}}
+@media (hover:hover) and (pointer:fine){
+  .env:hover .env-flap{transform:perspective(900px) rotateX(14deg)}
+  .env.open:hover .env-flap{transform:perspective(900px) rotateX(180deg)}
+}
+
+/* ---------- Capas fijas ---------- */
+#petals{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:250}
+.progress{position:fixed;left:0;right:0;top:env(safe-area-inset-top,0px);height:3px;z-index:60;transform-origin:0 50%;transform:scaleX(0);background:linear-gradient(90deg,var(--petal),var(--rose))}
+.wash{position:fixed;inset:0;z-index:120;pointer-events:none;opacity:0;transition:opacity .7s var(--ease-out);
+  background:radial-gradient(60rem 40rem at 50% 100%,rgba(169,123,242,.34),rgba(201,168,255,.16) 60%,rgba(201,168,255,.1))}
+.wash.on{opacity:1}
+
+/* ---------- La carta ---------- */
+.letter{max-width:38rem;margin:0 auto;padding-block:1rem 4rem;position:relative}
+.hero{padding-block:clamp(2rem,8vw,4.2rem) 1.6rem}
+.eyebrow{display:flex;align-items:center;gap:.7rem;margin:0 0 .6rem;font-family:var(--f-hand);font-size:1.7rem;line-height:1;color:var(--berry)}
+.eyebrow svg{width:1.1rem;height:1.1rem;flex:none;color:var(--rose);animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.opening{margin:0 0 1.5rem;font-family:var(--f-display);font-style:italic;font-weight:400;font-size:clamp(2.1rem,8.4vw,3.9rem);line-height:1.12;letter-spacing:-.012em;text-wrap:balance}
+.opening em{font-style:normal;font-weight:500;color:var(--berry)}
+.w{display:inline-block}
+.hello{margin:0;font-size:1.25rem;color:var(--ink-soft)}
+.hello span{color:var(--berry)}
+.cue{display:inline-flex;margin-top:1.6rem;color:var(--rose)}
+.cue svg{width:1.6rem;height:1.6rem;animation:nudge 1.9s var(--ease-io) infinite}
+@keyframes nudge{0%,100%{transform:translateY(0)}50%{transform:translateY(6px)}}
+
+.salute{margin:2.4rem 0 .6rem;font-family:var(--f-display);font-style:italic;font-size:1.9rem;line-height:1.2;color:var(--berry)}
+.p{margin:0 0 1.35em;text-wrap:pretty}
+.p em{font-style:italic;color:var(--berry);background:linear-gradient(transparent 60%,rgba(255,201,219,.8) 60%) no-repeat 0 0/100% 100%}
+.p.pre em{background-size:0% 100%}
+.p.pre.in em{background-size:100% 100%;transition:background-size .9s var(--ease-out) .55s}
+.dropcap::first-letter{float:left;font-family:var(--f-display);font-style:italic;font-size:4.1em;line-height:.8;padding:.06em .1em 0 0;color:var(--rose)}
+.hand{font-family:var(--f-hand);font-size:1.4em;line-height:1;color:var(--berry)}
+.pull{margin:2.3rem 0;text-align:center;font-family:var(--f-display);font-style:italic;font-size:clamp(1.65rem,5.8vw,2.35rem);line-height:1.2;color:var(--berry);text-wrap:balance}
+.promise{margin:3rem 0 2.4rem;font-size:clamp(2rem,7.4vw,3rem)}
+.orn{display:block;width:1.7rem;height:1.7rem;margin:2.6rem auto;color:var(--petal)}
+
+/* Fotos */
+.print{margin:2.6rem auto;max-width:min(100%,25rem);position:relative}
+.print.wide{max-width:100%}
+.frame{position:relative;padding:10px 10px 6px;background:#fff;border-radius:3px;transform:rotate(var(--r,0deg));
+  box-shadow:0 1px 0 var(--line),0 22px 36px -18px rgba(184,51,106,.38);transition:transform .35s var(--ease-out)}
+.frame::before{content:"";position:absolute;left:50%;top:-12px;width:5.6rem;height:1.55rem;margin-left:-2.8rem;transform:rotate(-3deg);
+  background:rgba(255,201,219,.78);box-shadow:0 1px 0 rgba(184,51,106,.12)}
+.print:nth-of-type(even) .frame::before{transform:rotate(3deg)}
+.pbtn{display:block;width:100%;padding:0;border:0;background:none;cursor:zoom-in;-webkit-tap-highlight-color:transparent;transition:transform .25s var(--ease-out)}
+/* Las fotos caen en su sitio al aparecer y la cinta se pega después */
+@keyframes settle{from{transform:rotate(calc(var(--r,0deg)*-3)) translateY(36px) scale(.95)}}
+@keyframes tape{from{opacity:0;transform:translateY(-16px) rotate(-8deg)}}
+.pre.in .frame{animation:settle .95s var(--ease-out) backwards}
+.pre.in .frame::before{animation:tape .5s var(--ease-out) .55s backwards}
+.pbtn img{display:block;width:100%;height:auto;background:var(--blush)}
+.print figcaption{padding:.35rem .2rem .2rem;font-family:var(--f-hand);font-size:1.5rem;line-height:1.1;color:var(--ink-soft);text-align:center}
+@media (hover:hover) and (pointer:fine){.print:hover .frame{transform:rotate(0deg) translateY(-4px)}}
+.pair{display:grid;gap:2.6rem;margin:2.6rem 0}
+.pair .print{margin:0 auto;width:100%}
+@media (min-width:900px){
+  .print.l{margin-left:-5.5rem}
+  .print.r{margin-right:-5.5rem}
+  .print.wide{width:calc(100% + 8rem);max-width:none;margin-left:-4rem}
+  .pair{grid-template-columns:1.35fr 1fr;align-items:start;margin-inline:-5rem;gap:2.2rem}
+  .pair .print:nth-child(2){margin-top:3.4rem}
+}
+
+/* Cintas de texto en movimiento */
+.band{position:relative;width:100vw;margin:3.4rem 0 3.4rem calc(50% - 50vw);overflow:hidden;background:var(--rose);color:#fff;transform:rotate(-2deg);padding:.65rem 0}
+.band.alt{background:var(--petal);color:var(--berry);transform:rotate(1.6deg)}
+.track{display:flex;width:max-content;animation:marq 32s linear infinite}
+.band.alt .track{animation-direction:reverse;animation-duration:38s}
+.grp{display:flex;align-items:center;gap:1.4rem;padding-right:1.4rem;white-space:nowrap;font-family:var(--f-display);font-style:italic;font-size:1.55rem;line-height:1.3}
+.grp svg{width:1.1rem;height:1.1rem;flex:none;animation:spin 9s linear infinite}
+@keyframes marq{to{transform:translateX(-50%)}}
+/* Frases que entran palabra por palabra */
+.w2{display:inline-block}
+.js .pull.pre .w2{opacity:0;transform:translateY(.55em)}
+.js .pull.pre.in .w2{opacity:1;transform:none;transition:opacity .7s var(--ease-out) var(--d,0ms),transform .7s var(--ease-out) var(--d,0ms)}
+/* Adornos que giran al aparecer */
+.orn.pre{transform:rotate(-140deg) scale(.5)}
+.orn.pre.in{transform:none;transition:opacity .8s var(--ease-out),transform 1.1s var(--ease-out)}
+/* Destellos alrededor del 20 */
+.big20{position:relative}
+.spark{position:absolute;width:1.5rem;height:1.5rem;color:var(--petal);animation:twinkle 2.4s var(--ease-io) infinite}
+.spark:nth-of-type(1){left:6%;top:-.4rem}
+.spark:nth-of-type(2){right:8%;top:.4rem;width:1.1rem;height:1.1rem;animation-delay:.7s}
+.spark:nth-of-type(3){left:14%;bottom:-.2rem;width:1.1rem;height:1.1rem;animation-delay:1.3s}
+.spark:nth-of-type(4){right:4%;bottom:.2rem;animation-delay:1.9s}
+@keyframes twinkle{0%,100%{opacity:.15;transform:scale(.5) rotate(0deg)}50%{opacity:1;transform:scale(1) rotate(45deg)}}
+/* Número 20 */
+.big20{display:flex;align-items:baseline;justify-content:center;gap:.7rem;margin:2.4rem 0 1.4rem;color:var(--rose)}
+.big20 .num{font-family:var(--f-display);font-weight:500;font-size:clamp(6.5rem,32vw,10rem);line-height:.9;font-variant-numeric:tabular-nums;letter-spacing:-.03em}
+.big20 .unit{font-family:var(--f-display);font-style:italic;font-size:clamp(1.8rem,7vw,2.6rem);color:var(--berry)}
+
+/* Cierre */
+.closing{margin-top:3rem;text-align:center}
+.kr-big{margin:0;font-size:clamp(2rem,8.5vw,3.1rem);line-height:1.3;color:var(--berry);font-weight:700}
+.tr{margin:.6rem 0 2rem;font-style:italic;color:var(--ink-soft)}
+.farewell{margin:0;font-size:1.2rem}
+.sign{margin:.2rem 0 0;font-family:var(--f-sign);font-size:clamp(4rem,17vw,6.4rem);line-height:1.1;color:var(--berry);padding:.1em .3em}
+.sign.pre-sign{clip-path:inset(-20% 100% -20% 0)}
+.sign.pre-sign.in{clip-path:inset(-20% -10% -20% 0);transition:clip-path 1.7s var(--ease-io)}
+.ps{margin:2rem 0 1rem;font-family:var(--f-hand);font-size:1.7rem;line-height:1.1;color:var(--ink-soft)}
+.heart{display:inline-grid;place-items:center;width:4.4rem;height:4.4rem;padding:0;border:0;border-radius:50%;background:var(--blush);color:var(--rose);cursor:pointer;
+  box-shadow:0 0 0 1px var(--line),0 14px 24px -12px rgba(184,51,106,.5);-webkit-tap-highlight-color:transparent;transition:transform .2s var(--ease-out)}
+.heart svg{width:2.2rem;height:2.2rem;animation:beat 2s var(--ease-io) infinite}
+.heart:active{transform:scale(.94)}
+.heart[aria-pressed="true"]{color:#8D5BE0;background:#F1E8FF}
+@keyframes beat{0%,60%,100%{transform:scale(1)}72%{transform:scale(1.14)}84%{transform:scale(1.02)}}
+.bora{margin:1.2rem auto 0;max-width:22rem;min-height:5.4rem;opacity:0;transform:translateY(8px);transition:opacity .5s var(--ease-out),transform .5s var(--ease-out)}
+.bora.on{opacity:1;transform:none}
+.bora b{display:block;font-family:var(--f-kr);font-size:2rem;color:#7A4BD0}
+.bora span{color:var(--ink-soft);font-style:italic}
+.foot{margin:3.2rem 0 0;text-align:center;font-family:var(--f-hand);font-size:1.4rem;color:var(--ink-soft)}
+
+/* Revelado al hacer scroll */
+.pre{opacity:0;transform:translateY(16px)}
+.pre.in{opacity:1;transform:none;transition:opacity .8s var(--ease-out),transform .8s var(--ease-out)}
+
+/* Lightbox */
+.lb{position:fixed;inset:0;z-index:200;display:grid;place-items:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background:rgba(61,27,43,.86);opacity:0;visibility:hidden;cursor:zoom-out;transition:opacity .22s var(--ease-out),visibility 0s linear .22s}
+.lb.on{opacity:1;visibility:visible;transition-delay:0s}
+.lb img{max-width:min(94vw,920px);max-height:84vh;border-radius:3px;background:#fff;padding:8px;transform:scale(.96);transition:transform .22s var(--ease-out)}
+.lb.on img{transform:none}
+.lb-close{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:max(14px,env(safe-area-inset-right,0px));width:2.8rem;height:2.8rem;border:0;border-radius:50%;background:var(--paper);color:var(--berry);font-size:1.6rem;line-height:1;cursor:pointer}
+
+/* Escena del beso: se abre con la estrella */
+.kiss{position:fixed;inset:0;z-index:180;display:grid;place-items:center;overflow:auto;cursor:zoom-out;
+  padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));
+  background-color:#341021;background-image:radial-gradient(48rem 30rem at 50% 38%,rgba(238,108,156,.42),transparent 70%);
+  opacity:0;visibility:hidden;transition:opacity .35s var(--ease-out),visibility 0s linear .35s}
+.kiss.on{opacity:1;visibility:visible;transition-delay:0s}
+.kiss-in{display:grid;justify-items:center;gap:1.5rem;width:min(100%,34rem);padding-block:3.4rem 2rem;text-align:center}
+.kiss-pol{position:relative;width:100%;padding:10px 10px 14px;background:#fff;border-radius:3px;transform:rotate(-2deg);box-shadow:0 34px 60px -22px rgba(0,0,0,.65)}
+.kiss-pol img{display:block;width:100%;height:auto}
+.kiss-stamp{position:absolute;right:-.9rem;bottom:-1.5rem;width:5.8rem;height:auto;transform:rotate(-14deg);filter:drop-shadow(0 4px 6px rgba(0,0,0,.35))}
+.kiss-ring{position:absolute;right:.4rem;bottom:-1.1rem;width:5.8rem;height:5.8rem;border-radius:50%;border:2px solid var(--petal);opacity:0}
+.kiss-line{margin:1.2rem 0 0;font-family:var(--f-display);font-style:italic;font-size:clamp(1.9rem,7.4vw,2.9rem);line-height:1.14;color:#fff;text-wrap:balance}
+.kiss-line .w3{display:inline-block}
+.kiss-line .hl{color:var(--petal)}
+.kiss-sub{margin:0;font-family:var(--f-hand);font-size:1.8rem;line-height:1.1;color:var(--petal)}
+.kiss-sub span{font-family:var(--f-kr);font-size:1.2rem;margin-left:.4rem}
+.kiss-hint{margin:.6rem 0 0;font-size:.95rem;color:rgba(255,226,236,.6)}
+.kiss.on .kiss-pol{animation:kdrop 1s var(--ease-out) .15s backwards}
+.kiss.on .kiss-pol img{animation:kdevelop 1.9s var(--ease-io) .45s backwards}
+.kiss.on .kiss-stamp{animation:kstamp .6s var(--ease-out) 1.8s backwards}
+.kiss.on .kiss-ring{animation:kring 1.1s var(--ease-out) 1.95s backwards}
+.kiss.on .kiss-line .w3{animation:krise .8s var(--ease-out) backwards;animation-delay:calc(2.4s + var(--i)*90ms)}
+.kiss.on .kiss-sub{animation:kfade .9s var(--ease-out) 3.9s backwards}
+.kiss.on .kiss-hint{animation:kfade .9s var(--ease-out) 5s backwards}
+@keyframes kdrop{from{opacity:0;transform:translateY(-70px) rotate(-10deg) scale(.9)}}
+@keyframes kdevelop{from{filter:brightness(.3) sepia(.85) blur(7px)}}
+@keyframes kstamp{0%{opacity:0;transform:rotate(-34deg) scale(2.2)}55%{opacity:1;transform:rotate(-14deg) scale(.88)}100%{opacity:1;transform:rotate(-14deg) scale(1)}}
+@keyframes kring{0%{opacity:.9;transform:scale(.8)}100%{opacity:0;transform:scale(2.6)}}
+@keyframes krise{from{opacity:0;transform:translateY(.6em)}}
+@keyframes kfade{from{opacity:0}}
+
+/* Movimiento reducido: menos desplazamiento, se conserva lo que ayuda a leer */
+.js .opening .w{opacity:0;transform:translateY(.35em)}
+.js .opening.go .w{opacity:1;transform:none;transition:opacity .8s var(--ease-out) var(--d,0ms),transform .8s var(--ease-out) var(--d,0ms)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .env-wrap,.hint,.cue svg,.heart svg,.eyebrow svg,.track,.grp svg,.spark{animation:none}
+  .pre.in .frame,.pre.in .frame::before{animation:none}
+  .kiss.on .kiss-pol,.kiss.on .kiss-pol img,.kiss.on .kiss-stamp,.kiss.on .kiss-ring,.kiss.on .kiss-line .w3,.kiss.on .kiss-sub,.kiss.on .kiss-hint{animation:none}
+  .kiss.on .kiss-sub,.kiss.on .kiss-hint{opacity:1}
+  .js .pull.pre .w2,.orn.pre{transform:none;opacity:1}
+  .spark{opacity:.6}
+  .env-flap,.env-card{transition:none}
+  .js .opening .w{transform:none;opacity:1}
+  .pre{transform:none}
+  .pre.in{transition:opacity .4s ease}
+  .sign.pre-sign{clip-path:none}
+  .frame{transition:none}
+  .intro{transition:opacity .4s ease,visibility 0s linear .4s}
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}img{max-width:100%}[hidden]{display:none!important}</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="sakura" viewBox="0 0 40 40">
+    <g fill="currentColor">
+      <path d="M20 20C13.5 14 15 4.5 20 2.5c5 2 6.5 11.5 0 17.5z"/>
+      <path d="M20 20C13.5 14 15 4.5 20 2.5c5 2 6.5 11.5 0 17.5z" transform="rotate(72 20 20)"/>
+      <path d="M20 20C13.5 14 15 4.5 20 2.5c5 2 6.5 11.5 0 17.5z" transform="rotate(144 20 20)"/>
+      <path d="M20 20C13.5 14 15 4.5 20 2.5c5 2 6.5 11.5 0 17.5z" transform="rotate(216 20 20)"/>
+      <path d="M20 20C13.5 14 15 4.5 20 2.5c5 2 6.5 11.5 0 17.5z" transform="rotate(288 20 20)"/>
+    </g>
+  </symbol>
+  <symbol id="chev" viewBox="0 0 24 24"><path d="M5 9l7 7 7-7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="heartsvg" viewBox="0 0 24 24"><path d="M12 2.2l2.9 6.3 6.9.8-5.1 4.7 1.4 6.8L12 17.3 5.9 20.8l1.4-6.8L2.2 9.3l6.9-.8z" fill="currentColor" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/></symbol>
+  <symbol id="spk" viewBox="0 0 24 24"><path d="M12 0c.9 7.4 4.6 11.1 12 12-7.4.9-11.1 4.6-12 12-.9-7.4-4.6-11.1-12-12C7.4 11.1 11.1 7.4 12 0z" fill="currentColor"/></symbol>
+</svg>
+
+<div class="intro" id="intro">
+  <div class="stage">
+    <p class="to">Para Mary<small>una carta de cumpleaños</small></p>
+    <div class="env-wrap" id="envWrap">
+      <button class="env" id="env" type="button" aria-label="Abrir la carta para Mary">
+        <span class="env-back"></span>
+        <span class="env-flap"></span>
+        <span class="env-card"><span class="card-hi">Mary,</span><span class="card-lines"><i></i><i></i><i></i></span></span>
+        <span class="env-front"></span>
+        <span class="seal" aria-hidden="true">M</span>
+      </button>
+    </div>
+    <p class="hint" id="hint">toca el sello para abrir</p>
+  </div>
+</div>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+<canvas id="petals" aria-hidden="true"></canvas>
+
+<main class="letter" id="letter">
+  <header class="hero">
+    <p class="eyebrow"><svg aria-hidden="true"><use href="#sakura"/></svg><span>Para Mary</span><span aria-hidden="true">·</span><span>20 años</span></p>
+    <h1 class="opening" id="opening" aria-label="Me pediste una carta, pero la mejor forma de demostrarte mi cariño es darte un poco de lo que sé.">
+      <span class="w" style="--d:0ms">Me</span>
+      <span class="w" style="--d:60ms">pediste</span>
+      <span class="w" style="--d:120ms">una</span>
+      <span class="w" style="--d:180ms">carta,</span>
+      <span class="w" style="--d:240ms">pero</span>
+      <span class="w" style="--d:300ms">la</span>
+      <span class="w" style="--d:360ms">mejor</span>
+      <span class="w" style="--d:420ms">forma</span>
+      <span class="w" style="--d:480ms">de</span>
+      <span class="w" style="--d:540ms">demostrarte</span>
+      <span class="w" style="--d:600ms">mi</span>
+      <span class="w" style="--d:660ms"><em>cariño</em></span>
+      <span class="w" style="--d:720ms">es</span>
+      <span class="w" style="--d:780ms">darte</span>
+      <span class="w" style="--d:840ms">un</span>
+      <span class="w" style="--d:900ms">poco</span>
+      <span class="w" style="--d:960ms">de</span>
+      <span class="w" style="--d:1020ms"><em>lo</em></span>
+      <span class="w" style="--d:1080ms"><em>que</em></span>
+      <span class="w" style="--d:1140ms"><em>sé.</em></span>
+    </h1>
+    <p class="hello">Feliz cumpleaños, Mary. <span lang="ko">생일 축하해</span></p>
+    <span class="cue" aria-hidden="true"><svg><use href="#chev"/></svg></span>
+  </header>
+
+  <p class="salute" data-r>Mary,</p>
+
+  <p class="p dropcap" data-r>Sí, es una página web. Sé que esperabas papel y un esfero, y en cambio te llegó un enlace con flores que se caen. Lo que mejor sé hacer es construir cosas, y me pareció poco regalarte algo menos que lo mejor que tengo. Así que aquí está. Cada color, cada animación y hasta el orden de las fotos los pensé para ti.</p>
+
+  <p class="p" data-r>Empiezo por esta foto, porque de aquí sale todo lo demás.</p>
+
+  <figure class="print l" data-r>
+    <div class="frame" style="--r:-2.2deg">
+      <button class="pbtn" type="button" aria-label="Ampliar foto: la reina, a sus anchas"><img src="img/f1.jpg" width="733" height="1100" alt="Mary sentada en el piso con un vestido largo pintado a mano en colores vivos, una flor fucsia en el pelo, riendo con los ojos cerrados" decoding="async"></button>
+      <figcaption>la reina, a sus anchas</figcaption>
+    </div>
+  </figure>
+
+  <p class="p" data-r>Este año cumpliste tu sueño de ser reina. Lo escribo despacio porque pesa lo que tiene que pesar. Mírate, sentada en el piso, con ese vestido pintado a mano abierto como un jardín entero, la flor fucsia en el pelo y los ojos cerrados de la risa. Se nota que la corona no te cambió nada. Solo le puso nombre a algo que ya llevabas puesto.</p>
+
+  <p class="p" data-r>Un sueño así lo cumple quien se lo toma en serio, y tú lo hiciste. Lo estás cumpliendo, en presente, porque esto sigue. Estoy muy <em>orgulloso</em> de ti, y te lo digo con todo lo que significa esa palabra.</p>
+
+  <svg class="orn" aria-hidden="true" data-r><use href="#sakura"/></svg>
+
+  <figure class="print r" data-r>
+    <div class="frame" style="--r:2deg">
+      <button class="pbtn" type="button" aria-label="Ampliar foto: tu gente"><img src="img/f2.jpg" width="733" height="1100" alt="Cuatro amigos abrazados frente a una pared vieja de colores, sonriendo; una de ellas hace cara de pato al frente" loading="lazy" decoding="async"></button>
+      <figcaption>tu gente (con cara de pato incluida)</figcaption>
+    </div>
+  </figure>
+
+  <p class="p" data-r>Mira también quiénes te rodean. Abrazos que no dejan espacio, caras pegadas, una pared vieja y descascarada de colores al fondo y hasta una cara de pato por ahí. Nadie se amontona de ese modo sobre alguien que no vale la pena. Eso también habla de ti.</p>
+
+  <figure class="print wide" data-r>
+    <div class="frame" style="--r:-1.4deg">
+      <button class="pbtn" type="button" aria-label="Ampliar foto: todos mirando hacia donde tú estás"><img src="img/f3.jpg" width="1100" height="733" alt="Mary bailando en un parque con una gran flor amarilla en el pelo y una tela naranja en las manos, rodeada de gente que la graba con sus celulares" loading="lazy" decoding="async"></button>
+      <figcaption>todos mirando hacia donde tú estás</figcaption>
+    </div>
+  </figure>
+
+  <p class="p" data-r>Y esta, bailando. Una flor amarilla del tamaño de tu cabeza, la tela naranja entre las manos y un parque lleno de gente levantando el celular para grabarte. Con esa imagen me quedo: tú en el centro, y los demás, sin ponerse de acuerdo, mirando hacia donde estás tú.</p>
+
+  <p class="pull" data-r>Eso no se enseña, Mary. Eso se tiene.</p>
+
+  <figure class="print l" data-r>
+    <div class="frame" style="--r:2.4deg">
+      <button class="pbtn" type="button" aria-label="Ampliar foto: brillando con los tuyos"><img src="img/f4.jpg" width="824" height="1100" alt="Mary, a la derecha con blusa negra de malla, sonriendo junto a cuatro amigos frente a una cortina plateada brillante" loading="lazy" decoding="async"></button>
+      <figcaption>brillando, con los tuyos</figcaption>
+    </div>
+  </figure>
+
+  <div class="big20" data-r aria-label="20 años">
+    <svg class="spark" aria-hidden="true"><use href="#spk"/></svg><svg class="spark" aria-hidden="true"><use href="#spk"/></svg><svg class="spark" aria-hidden="true"><use href="#spk"/></svg><svg class="spark" aria-hidden="true"><use href="#spk"/></svg>
+    <span class="num" id="num">20</span><span class="unit">años</span>
+  </div>
+
+  <p class="p" data-r>Veinte años. Y mírate en esta foto: de negro, con la sonrisa abierta, papel plateado brillando detrás y los tuyos pegados a ti. Me encanta verte así, tan tú y rodeada de gente que te quiere.</p>
+
+  <p class="p" data-r>Sé que lo tuyo es BTS y que te encanta Corea del Sur, así que te debo una explicación del color. El rosado lo elegí yo, porque hoy el protagonismo es tuyo y no del morado <span class="hand">(ya sé, ya sé)</span>. Hay una canción que se llama <em>Yet to Come</em>, y su idea de que lo mejor todavía no ha llegado le queda perfecta a este año tuyo. A los veinte ya eres reina y falta todo lo demás. No me sorprendería nada verte algún día caminando por Seúl con la misma risa de la primera foto.</p>
+
+  <div class="band" aria-hidden="true">
+    <div class="track">
+      <div class="grp"><span lang="ko">생일 축하해</span><svg><use href="#sakura"/></svg><span>Feliz cumpleaños, Mary</span><svg><use href="#sakura"/></svg><span>20 años</span><svg><use href="#sakura"/></svg><span lang="ko">자랑스러워</span><svg><use href="#sakura"/></svg><span>La reina</span><svg><use href="#sakura"/></svg></div>
+      <div class="grp"><span lang="ko">생일 축하해</span><svg><use href="#sakura"/></svg><span>Feliz cumpleaños, Mary</span><svg><use href="#sakura"/></svg><span>20 años</span><svg><use href="#sakura"/></svg><span lang="ko">자랑스러워</span><svg><use href="#sakura"/></svg><span>La reina</span><svg><use href="#sakura"/></svg></div>
+    </div>
+  </div>
+
+  <p class="p" data-r>Ahora te digo algo que es de los dos. Nuestra historia cambió de forma, y lo que quedó es una amistad de verdad, de esas que se sienten fáciles. Nos podemos reír, hacernos caras y abrazarnos para una foto sin que nadie tenga que explicar nada. Eso es raro, y yo lo cuido mucho.</p>
+
+  <div class="pair">
+    <figure class="print" data-r>
+      <div class="frame" style="--r:-2deg">
+        <button class="pbtn" type="button" aria-label="Ampliar foto: con grano de rollo y todo"><img src="img/f5.jpg" width="1100" height="742" alt="Mary con los ojos cerrados y gesto de beso, abrazada por un amigo que le da un beso en la mejilla, bajo un letrero de neón rojo y verde" loading="lazy" decoding="async"></button>
+        <figcaption>con grano de rollo y todo</figcaption>
+      </div>
+    </figure>
+    <figure class="print" data-r>
+      <div class="frame" style="--r:2.2deg">
+        <button class="pbtn" type="button" aria-label="Ampliar foto: tú, a carcajadas"><img src="img/f6.jpg" width="733" height="1100" alt="Mary riendo a carcajadas, abrazada de lado a un amigo con buzo blanco, de noche" loading="lazy" decoding="async"></button>
+        <figcaption>tú, a carcajadas</figcaption>
+      </div>
+    </figure>
+  </div>
+
+  <p class="p" data-r>Sé lo que cuesta quedarse con lo bueno de alguien cuando la historia cambia. Tú lo hiciste fácil. Contigo puedo estar callado o en medio de todo el ruido del mundo y sentirme en el lugar correcto. Me alegra de verdad que sigamos siendo esto: tu amigo, tu cómplice, el que aplaude primero.</p>
+
+  <figure class="print r" data-r>
+    <div class="frame" style="--r:-1.8deg">
+      <button class="pbtn" type="button" aria-label="Ampliar foto: Inglés intermedio, uno de muchos"><img src="img/f7.jpg" width="825" height="1100" alt="Mary sonriendo con su certificado de Inglés Intermedio del Colombo Americano en las manos, en el salón de la ceremonia" loading="lazy" decoding="async"></button>
+      <figcaption>Inglés intermedio, uno de muchos</figcaption>
+    </div>
+  </figure>
+
+  <p class="p" data-r>Por eso me hizo tanta ilusión acompañarte a recibir tu diploma del Colombo. Fue uno de los primeros logros que compartí contigo, y uno de muchos. Te vi con ese papel rosado en las manos y esa sonrisa enorme y entendí el patrón: te propones algo, lo trabajas y de pronto estás ahí, con el documento en la mano y la gente aplaudiendo.</p>
+
+  <p class="pull" data-r>Inglés, corona y todo lo que falta. Dime tú qué sigue.</p>
+
+  <p class="p" data-r>Ahora déjame ponerme serio un momento, Mary. Te quiero muchísimo. Te quiero como se quiere a la gente que uno elige tener cerca para siempre, sin condiciones y sin letra pequeña. Todo el cariño que te tengo cabe en esta página y aun así se queda corto.</p>
+
+  <p class="p" data-r>Quiero que sepas que voy a estar. Cuando todo salga bien y haya que celebrar a gritos, y también en los días en que nada salga como esperabas, que los habrá, porque la vida no siempre es pasarela. Si necesitas un abrazo, un consejo, alguien que te escuche sin juzgar o que te recuerde lo que vales, escríbeme. A la hora que sea. Sin pensarlo.</p>
+
+  <p class="p" data-r>Estoy <em>orgulloso</em> de la mujer que eres y de la que sigues construyendo. Gracias por dejarme ser testigo, gracias por esta amistad y gracias por pedirme una carta, que me dio la mejor excusa para decirte todo esto.</p>
+
+  <p class="pull promise" data-r>Aquí voy a estar para ti. Siempre.</p>
+
+  <div class="band alt" aria-hidden="true">
+    <div class="track">
+      <div class="grp"><span lang="ko">보라해</span><svg><use href="#sakura"/></svg><span>Yet to Come</span><svg><use href="#sakura"/></svg><span>Inglés intermedio</span><svg><use href="#sakura"/></svg><span>Corona</span><svg><use href="#sakura"/></svg><span>Seúl, algún día</span><svg><use href="#sakura"/></svg></div>
+      <div class="grp"><span lang="ko">보라해</span><svg><use href="#sakura"/></svg><span>Yet to Come</span><svg><use href="#sakura"/></svg><span>Inglés intermedio</span><svg><use href="#sakura"/></svg><span>Corona</span><svg><use href="#sakura"/></svg><span>Seúl, algún día</span><svg><use href="#sakura"/></svg></div>
+    </div>
+  </div>
+
+  <section class="closing" data-r>
+    <p class="kr-big" lang="ko">생일 축하해, Mary.<br>자랑스러워.</p>
+    <p class="tr">Feliz cumpleaños, Mary. Estoy orgulloso de ti.</p>
+    <p class="farewell">Con todo mi cariño,</p>
+    <p class="sign" id="sign">Alejo</p>
+    <p class="ps">P.D. Toca la estrella. Todavía queda un regalo.</p>
+    <button class="heart" id="heart" type="button" aria-haspopup="dialog" aria-label="Tocar la estrella para ver el último regalo"><svg aria-hidden="true"><use href="#heartsvg"/></svg></button>
+  </section>
+
+  <p class="foot">hecho a mano, línea por línea, para Mary</p>
+</main>
+
+<div class="kiss" id="kiss" role="dialog" aria-modal="true" aria-label="Un beso para Mary">
+  <button class="lb-close" id="kissClose" type="button" aria-label="Cerrar">×</button>
+  <div class="kiss-in">
+    <div class="kiss-pol">
+      <img src="img/f5.jpg" width="1100" height="742" alt="Mary con gesto de beso mientras un amigo le da un beso en la mejilla" decoding="async">
+      <span class="kiss-ring" aria-hidden="true"></span>
+      <svg class="kiss-stamp" viewBox="0 0 64 42" aria-hidden="true">
+        <path fill="#E5457F" d="M4 20C14 8 22 4 32 9c10-5 18-1 28 11-12 2-20 1-28 1S16 22 4 20z"/>
+        <path fill="#D12F6B" d="M4 20c12 2 20 2 28 2s16 0 28-2c-8 14-18 18-28 18S12 34 4 20z"/>
+        <path fill="none" stroke="#FFD2E1" stroke-width="1.4" stroke-linecap="round" opacity=".7" d="M8 21c14 2.5 34 2.5 48 0M22 28c6 3 14 3 20 0"/>
+      </svg>
+    </div>
+    <p class="kiss-line" id="kissLine">Que este beso dure para toda la vida.</p>
+    <p class="kiss-sub">(y esta amistad también) <span lang="ko">보라해</span></p>
+    <p class="kiss-hint">toca para cerrar</p>
+  </div>
+</div>
+
+<div class="lb" id="lb" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button class="lb-close" id="lbClose" type="button" aria-label="Cerrar">×</button>
+  <img id="lbImg" alt="">
+</div>
+
+<script>
+(function(){
+  'use strict';
+  var root=document.documentElement;
+  root.classList.add('js','locked');
+  var reduce=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+  var $=function(s){return document.querySelector(s)};
+  var intro=$('#intro'),env=$('#env'),envWrap=$('#envWrap'),hint=$('#hint'),letter=$('#letter'),opening=$('#opening');
+  letter.setAttribute('inert','');
+
+  /* ---------- Pétalos ---------- */
+  var cv=$('#petals'),cx=cv.getContext('2d'),dpr=1,W=0,H=0,list=[],raf=0,last=0,running=false,mode='pink',clock=0;
+  var PAL={pink:['#FFC9DB','#F9A8C6','#FFDDE8','#F27BA5'],lilac:['#E3D3FF','#C9A8FF','#EFE5FF','#A97BF2']};
+  function fit(){
+    dpr=Math.min(window.devicePixelRatio||1,2);W=window.innerWidth;H=window.innerHeight;
+    cv.width=Math.round(W*dpr);cv.height=Math.round(H*dpr);cx.setTransform(dpr,0,0,dpr,0,0);
+  }
+  function mk(x,y,burst){
+    var s=7+Math.random()*8;
+    return {x:x,y:y,s:s,tmp:!!burst,
+      vx:burst?(Math.random()-.5)*300:0,
+      vy:burst?(-140-Math.random()*240):(20+Math.random()*30),
+      tvy:24+Math.random()*28,amp:18+Math.random()*30,ph:Math.random()*6.28,
+      rot:Math.random()*6.28,vr:(Math.random()-.5)*2.2,fl:Math.random()*6.28,vf:1.2+Math.random()*1.8,
+      c:Math.floor(Math.random()*4),a:.55+Math.random()*.3};
+  }
+  function seed(){
+    list=list.filter(function(p){return p.tmp});
+    var n=W<600?15:26;
+    for(var i=0;i<n;i++)list.push(mk(Math.random()*W,Math.random()*H,false));
+  }
+  function drawPetal(p){
+    cx.save();cx.translate(p.x,p.y);cx.rotate(p.rot);cx.scale(1,.7+.3*Math.sin(p.fl));
+    cx.globalAlpha=p.a;cx.fillStyle=PAL[mode][p.c];
+    var s=p.s;cx.beginPath();cx.moveTo(0,-s*.78);
+    cx.bezierCurveTo(s*.5,-s*1.15,s*.72,s*.35,0,s);
+    cx.bezierCurveTo(-s*.72,s*.35,-s*.5,-s*1.15,0,-s*.78);
+    cx.closePath();cx.fill();cx.restore();
+  }
+  function loop(t){
+    if(!running)return;
+    var dt=Math.min(.05,(t-last)/1000||.016);last=t;clock+=dt;
+    cx.clearRect(0,0,W,H);
+    for(var i=list.length-1;i>=0;i--){
+      var p=list[i];
+      p.vy+=(p.tvy-p.vy)*Math.min(1,dt*1.8);
+      p.vx+=(Math.sin(clock*.9+p.ph)*p.amp-p.vx)*Math.min(1,dt*1.5);
+      p.x+=p.vx*dt;p.y+=p.vy*dt;p.rot+=p.vr*dt;p.fl+=p.vf*dt;
+      if(p.y>H+24||p.x<-40||p.x>W+40){
+        if(p.tmp){list.splice(i,1);continue}
+        p.y=-20;p.x=Math.random()*W;p.vy=p.tvy;
+      }
+      drawPetal(p);
+    }
+    raf=requestAnimationFrame(loop);
+  }
+  function startPetals(){
+    if(reduce||running)return;
+    running=true;last=performance.now();raf=requestAnimationFrame(loop);
+  }
+  function burst(x,y,n){
+    if(reduce)return;
+    for(var i=0;i<n&&list.length<130;i++)list.push(mk(x+(Math.random()-.5)*30,y+(Math.random()-.5)*20,true));
+    startPetals();
+  }
+  fit();seed();startPetals();
+  window.addEventListener('resize',function(){fit();seed()});
+  document.addEventListener('visibilitychange',function(){
+    if(document.hidden){running=false;cancelAnimationFrame(raf)}
+    else{startPetals()}
+  });
+  /* Al hacer scroll, los pétalos se arrastran: los grandes más que los pequeños */
+  var lastScrollY=window.scrollY||0;
+  function windPetals(){
+    var y=window.scrollY||0,dy=y-lastScrollY;lastScrollY=y;
+    if(reduce||!dy)return;
+    dy=Math.max(-120,Math.min(120,dy));
+    for(var i=0;i<list.length;i++){var p=list[i];p.y-=dy*(.12+p.s/70);p.vx+=dy*.4}
+  }
+  document.addEventListener('click',function(e){
+    if(!running||e.target.closest('button,a,.lb'))return;
+    burst(e.clientX,e.clientY,6);
+  });
+
+  /* ---------- Abrir el sobre ---------- */
+  var opened=false;
+  function openLetter(){
+    if(opened)return;opened=true;
+    var r=env.getBoundingClientRect();
+    env.classList.add('open');
+    envWrap.classList.add('stop');
+    hint.classList.add('gone');
+    var T=reduce?{back:0,done:350}:{back:320,done:1750};
+    setTimeout(function(){env.classList.add('flap-back')},T.back);
+    if(!reduce)setTimeout(function(){burst(r.left+r.width/2,r.top+r.height*.3,28)},900);
+    setTimeout(function(){
+      intro.classList.add('done');
+      intro.setAttribute('aria-hidden','true');intro.setAttribute('inert','');
+      root.classList.remove('locked');
+      letter.removeAttribute('inert');
+      window.scrollTo(0,0);
+      opening.classList.add('go');
+      startPetals();
+    },T.done);
+  }
+  env.addEventListener('click',openLetter);
+
+  /* ---------- Revelado al hacer scroll ---------- */
+  var count=$('#num'),sign=$('#sign');
+  var io=null;
+  if('IntersectionObserver' in window){
+    io=new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting)return;
+        e.target.classList.add('in');io.unobserve(e.target);
+        if(e.target.contains(count))runCount();
+        if(e.target.classList.contains('promise')){var pr=e.target.getBoundingClientRect();burst(window.innerWidth/2,pr.top,30)}
+        if(e.target.contains(sign))sign.classList.add('in');
+      });
+    },{rootMargin:'0px 0px -10% 0px',threshold:.12});
+    document.querySelectorAll('[data-r]').forEach(function(el){el.classList.add('pre');io.observe(el)});
+    sign.classList.add('pre-sign');
+    var sio=new IntersectionObserver(function(es){
+      es.forEach(function(e){if(e.isIntersecting){sign.classList.add('in');sio.disconnect()}});
+    },{threshold:.8});
+    sio.observe(sign);
+    if(!reduce)count.textContent='0';
+  }
+  function runCount(){
+    if(reduce){count.textContent='20';return}
+    var t0=performance.now(),D=1400;
+    (function step(t){
+      var k=Math.min(1,(t-t0)/D),e=1-Math.pow(1-k,3);
+      count.textContent=String(Math.round(20*e));
+      if(k<1)requestAnimationFrame(step);
+      else{var r=count.getBoundingClientRect();burst(r.left+r.width/2,r.top+r.height/2,26)}
+    })(t0);
+  }
+
+  /* ---------- Progreso de lectura ---------- */
+  var prog=$('#progress'),tick=false;
+  function upd(){
+    var h=root.scrollHeight-window.innerHeight;
+    var p=h>0?Math.min(1,Math.max(0,window.scrollY/h)):0;
+    prog.style.transform='scaleX('+p.toFixed(4)+')';tick=false;
+  }
+  window.addEventListener('scroll',function(){
+    windPetals();
+    if(!tick){tick=true;requestAnimationFrame(function(){upd();slide()})}
+  },{passive:true});
+
+  /* ---------- Frases de énfasis, palabra por palabra ---------- */
+  document.querySelectorAll('.pull').forEach(function(el){
+    var words=el.textContent.trim().split(/\s+/);el.textContent='';
+    words.forEach(function(w,i){
+      var s=document.createElement('span');s.className='w2';s.style.setProperty('--d',(i*80)+'ms');s.textContent=w;
+      el.appendChild(s);if(i<words.length-1)el.appendChild(document.createTextNode(' '));
+    });
+  });
+
+  /* ---------- Las fotos se deslizan a distinto ritmo al hacer scroll ---------- */
+  var frames=[].slice.call(document.querySelectorAll('.frame'));
+  function slide(){
+    if(reduce)return;
+    var vh=window.innerHeight;
+    for(var i=0;i<frames.length;i++){
+      var r=frames[i].getBoundingClientRect();
+      if(r.bottom<-80||r.top>vh+80)continue;
+      var off=((r.top+r.height/2)-vh/2)/vh;
+      var k=(i%2?-1:1)*Math.max(-1,Math.min(1,off))*-22;
+      frames[i].style.translate='0 '+k.toFixed(1)+'px';
+    }
+  }
+  slide();
+
+  /* ---------- Inclinación 3D de las fotos con el puntero ---------- */
+  if(!reduce&&window.matchMedia&&window.matchMedia('(hover: hover) and (pointer: fine)').matches){
+    document.querySelectorAll('.print').forEach(function(pr){
+      var b=pr.querySelector('.pbtn');
+      pr.addEventListener('pointermove',function(e){
+        var r=b.getBoundingClientRect();
+        var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;
+        b.style.transform='perspective(700px) rotateX('+(-y*8).toFixed(2)+'deg) rotateY('+(x*10).toFixed(2)+'deg)';
+      });
+      pr.addEventListener('pointerleave',function(){b.style.transform=''});
+    });
+  }
+
+  /* ---------- Fotos ampliadas ---------- */
+  var lb=$('#lb'),lbImg=$('#lbImg'),lbClose=$('#lbClose'),from=null;
+  function openLb(btn){
+    var img=btn.querySelector('img');from=btn;
+    lbImg.src=img.currentSrc||img.src;lbImg.alt=img.alt;
+    lb.classList.add('on');lbClose.focus({preventScroll:true});
+  }
+  function closeLb(){
+    lb.classList.remove('on');
+    if(from)from.focus({preventScroll:true});
+  }
+  document.querySelectorAll('.pbtn').forEach(function(b){b.addEventListener('click',function(){openLb(b)})});
+  lb.addEventListener('click',closeLb);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&lb.classList.contains('on'))closeLb()});
+
+  /* ---------- La estrella: escena del beso ---------- */
+  var star=$('#heart'),kiss=$('#kiss'),kClose=$('#kissClose'),kLine=$('#kissLine'),kPol=kiss.querySelector('.kiss-pol');
+  var kTimers=[],kOpenedAt=0;
+  (function(){
+    var words=kLine.textContent.trim().split(/\s+/);kLine.textContent='';
+    words.forEach(function(w,i){
+      var s=document.createElement('span');s.className='w3'+(i>=4?' hl':'');s.style.setProperty('--i',i);s.textContent=w;
+      kLine.appendChild(s);if(i<words.length-1)kLine.appendChild(document.createTextNode(' '));
+    });
+  })();
+  function later(fn,ms){kTimers.push(setTimeout(fn,ms))}
+  function openKiss(){
+    kOpenedAt=Date.now();
+    kiss.classList.add('on');kClose.focus({preventScroll:true});
+    kiss.scrollTop=0;
+    if(!reduce){
+      later(function(){var r=kPol.getBoundingClientRect();burst(r.right-30,r.bottom-10,18)},2000);
+      later(function(){burst(window.innerWidth/2,-10,26)},2500);
+    }
+  }
+  function closeKiss(){
+    kTimers.forEach(clearTimeout);kTimers=[];
+    kiss.classList.remove('on');star.focus({preventScroll:true});
+  }
+  star.addEventListener('click',openKiss);
+  kClose.addEventListener('click',function(e){e.stopPropagation();closeKiss()});
+  kiss.addEventListener('click',function(){if(Date.now()-kOpenedAt>1500)closeKiss()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&kiss.classList.contains('on'))closeKiss()});
+})();
+</script>
+
+</body>
+</html>

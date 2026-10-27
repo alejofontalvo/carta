@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: carta-mary
+    runtime: static
+    buildCommand: echo "sitio estatico"
+    staticPublishPath: .
